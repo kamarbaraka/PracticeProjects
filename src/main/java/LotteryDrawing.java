@@ -37,7 +37,7 @@ class ResultComputation{
         for (int i = 0; i < numbers.length; i++)
             numbers[i] = i + 1;
 
-        //creat an array to hold the combination result of the user
+        //create an array to hold the combination result of the user
         int[] result = new int[data.numbersToDraw];
 
         //define a random offset to draw the values from the numbers
