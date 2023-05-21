@@ -43,7 +43,7 @@ class Computation{
 //        create a 2D array to hold our compound data
         table = new double[N_YEARS][N_RATES];
 
-//        set the initial balances to 10_000 in the first row
+//        set the initial balances to 10,000 in the first row
         Arrays.fill(table[0], theBalance);
 
 //        compute the interest for future years
