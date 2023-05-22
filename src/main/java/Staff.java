@@ -11,16 +11,21 @@ import java.time.*;
  * */
 
 public class Staff {
-    private static final List<Employee> staff = new ArrayList<>();
+    private final List<Employee> staff = new ArrayList<>();
+    //constructor
+    public Staff(){}
+
     public static void main(String[] args){
         //sample code
+        Staff staff = new Staff();
         LocalDate date = LocalDate.now();
         Employee kamar = new Employee("kamar", 10_000.00, date);
-        Staff.add(kamar);
+        staff.add(kamar);
+        var staffs = staff.getStaff();
     }
     /**@param employee
      * takes an employee object as parameter*/
-    public static void add(Employee employee){
+    public void add(Employee employee){
         staff.add(employee);
     }
     /**@return String.
@@ -74,5 +79,12 @@ class Employee{
     public String[] info(){
         Double castedSalary = (Double) this.salary;
         return new String[]{name, castedSalary.toString(), hireDay.toString()};
+    }
+
+    //unit test
+    public static void main(String[] args){
+        var date = LocalDate.now();
+        Employee employee = new Employee("kamar baraka", 20000, date);
+        System.out.println(Arrays.toString(employee.info()));
     }
 }
