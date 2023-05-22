@@ -11,7 +11,7 @@ import java.time.*;
  * */
 
 public class Staff {
-    private static List<Employee> staff = new ArrayList<>();
+    private static final List<Employee> staff = new ArrayList<>();
     public static void main(String[] args){
         //sample code
         LocalDate date = LocalDate.now();
