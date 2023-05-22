@@ -25,8 +25,8 @@ public class Staff {
     }
     /**@return String.
      * not fully developed*/
-    public String getStaff(){
-        return "not yet";
+    public Object[] getStaff(){
+        return staff.toArray().clone();
     }
 }
 
@@ -44,35 +44,35 @@ class Employee{
     private final LocalDate hireDay;
 
     /**
-     * @param parsedName the name of the employee
-     * @param  initialSalary the agreed salary
-     * @param parsedHireDay the date the employee was hired. It should be a local date object*/
-    public Employee(String parsedName, double initialSalary, LocalDate parsedHireDay){
-        name = Objects.requireNonNull(parsedName, "the name can't be null!");
-        salary = initialSalary;
-        hireDay = Objects.requireNonNull(parsedHireDay, "the date can't be null");
+     * @param name the name of the employee
+     * @param  salary the agreed salary
+     * @param hireDay the date the employee was hired. It should be a local date object*/
+    public Employee(String name, double salary, LocalDate hireDay){
+        this.name = Objects.requireNonNull(name, "the name can't be null!");
+        this.salary = salary;
+        this.hireDay = Objects.requireNonNull(hireDay, "the date can't be null");
     }
 
     public String getName(){
-        return name;
+        return this.name;
     }
 
     public double getSalary(){
-        return salary;
+        return this.salary;
     }
 
     public LocalDate getHireDay(){
-        return hireDay;
+        return this.hireDay;
     }
 /**@param percentage the percentage of the raise*/
     public double raiseSalary(double percentage){
-        var raise = salary * (percentage/100.0);
-        salary += raise;
-        return salary;
+        var raise = this.salary * (percentage/100.0);
+        this.salary += raise;
+        return this.salary;
     }
 
     public String[] info(){
-        Double castedSalary = (Double) salary;
+        Double castedSalary = (Double) this.salary;
         return new String[]{name, castedSalary.toString(), hireDay.toString()};
     }
 }
