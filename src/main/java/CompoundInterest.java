@@ -1,3 +1,4 @@
+import java.text.NumberFormat;
 import java.util.*;
 
 /**
@@ -62,15 +63,17 @@ class Computation{
 
 class Tabulation{
     public Tabulation(Computation comp){
+        NumberFormat percentage = NumberFormat.getPercentInstance();
 //        print row of interest rates
         for (double interest : comp.interestRates)
-            System.out.printf("%9.1f%%", 100 * interest);
+            System.out.printf("%14s ", percentage.format(interest));
         System.out.println();
 
+        NumberFormat currency = NumberFormat.getCurrencyInstance();
 //        print the balance table
         for (double[] row : comp.table){
             for (double column : row)
-                System.out.printf("%10.2f", column);
+                System.out.printf("%15s", currency.format(column));
             System.out.println();
         }
     }
