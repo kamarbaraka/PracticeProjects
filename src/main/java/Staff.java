@@ -48,9 +48,9 @@ class Employee{
      * @param  initialSalary the agreed salary
      * @param parsedHireDay the date the employee was hired. It should be a local date object*/
     public Employee(String parsedName, double initialSalary, LocalDate parsedHireDay){
-        name = parsedName;
+        name = Objects.requireNonNull(parsedName, "the name can't be null!");
         salary = initialSalary;
-        hireDay = parsedHireDay;
+        hireDay = Objects.requireNonNull(parsedHireDay, "the date can't be null");
     }
 
     public String getName(){
@@ -66,7 +66,8 @@ class Employee{
     }
 /**@param percentage the percentage of the raise*/
     public double raiseSalary(double percentage){
-        salary = salary * (percentage/100.0);
+        var raise = salary * (percentage/100.0);
+        salary += raise;
         return salary;
     }
 
