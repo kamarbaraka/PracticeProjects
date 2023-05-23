@@ -28,7 +28,7 @@ public class Calendar {
             prompt.printf("%3s ", eachDay);
         prompt.println();
         //prompt.print("h");
-        for (int i = 7; i <= weekDayValue; i++)
+        for (int i = 1; i < weekDayValue; i++)
             prompt.print("   ");
 
         while (date.getMonthValue() == month){

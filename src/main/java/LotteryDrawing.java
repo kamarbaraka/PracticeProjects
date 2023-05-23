@@ -40,7 +40,8 @@ class ResultComputation{
         int[] result = new int[data.numbersToDraw];
 
         //define a random offset to draw the values from the numbers
-        int randomIndex = (int) (Math.random() * data.highestNumber);
+        Random random = new Random();
+        int randomIndex = random.nextInt(data.highestNumber);
 
         //fill the result array with random numbers drawn from the numbers
         for (int i = 0; i < result.length; i++){
