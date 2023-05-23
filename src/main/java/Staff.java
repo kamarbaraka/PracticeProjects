@@ -1,3 +1,5 @@
+
+import java.text.NumberFormat;
 import java.util.*;
 import java.time.*;
 /**
@@ -14,7 +16,34 @@ public class Staff {
     private final List<Employee> staff = new ArrayList<>();
     //constructor
     public Staff(){}
+    /**
+     * @param employee the employee object/s you wish to store.
+     * */
+    public Staff(Employee... employee){
+        for (Employee eachEmployee : employee)
+            add(eachEmployee);
+    }
 
+    /**@param employee
+     * takes an employee object as parameter*/
+    public void add(Employee employee){
+        staff.add(employee);
+    }
+    /**@param name supply the name of the employee
+     * @return Employee the employee object*/
+    public Employee get(String name){
+        Employee employee = null;
+        for (Employee each : staff)
+            if (each.getName().equalsIgnoreCase(name))
+                employee = each;
+        return employee;
+    }
+
+    /**@return String.
+     * not fully developed*/
+    public Object[] getStaff(){
+        return staff.toArray().clone();
+    }
     public static void main(String[] args){
         //sample code
         Staff staff = new Staff();
@@ -22,16 +51,6 @@ public class Staff {
         Employee kamar = new Employee("kamar", 10_000.00, date);
         staff.add(kamar);
         var staffs = staff.getStaff();
-    }
-    /**@param employee
-     * takes an employee object as parameter*/
-    public void add(Employee employee){
-        staff.add(employee);
-    }
-    /**@return String.
-     * not fully developed*/
-    public Object[] getStaff(){
-        return staff.toArray().clone();
     }
 }
 
@@ -42,11 +61,27 @@ public class Staff {
  * the salary and the date of hire respectively. It also has methods {@methods raiseSalary} that raises the
  * salary of the particular employee by a percentage,saves it and returns the resultant value. Method {@methods info} returns an array that contains
  * the information of the particular employee.
+ * @author kamar baraka
+ * @version 2.0
  * */
 class Employee{
-    private final String name;
+    private static int nextId;
+    private static final Random random = new Random();
+    private final int id;
+    private String name;
     private double salary;
-    private final LocalDate hireDay;
+    private LocalDate hireDay;
+    //static initialization block
+    static {
+        nextId = random.nextInt(10_000);
+    }
+    //object initialization block
+    {
+        id = nextId;
+        nextId++;
+        name = "";
+        hireDay = LocalDate.now();
+    }
 
     /**
      * @param name the name of the employee
@@ -57,15 +92,38 @@ class Employee{
         this.salary = salary;
         this.hireDay = Objects.requireNonNull(hireDay, "the date can't be null");
     }
+    /**
+     * @param name the name of the employee
+     * @param hireDay {@see LocalDate} object to represent the date of hire
+     * */
+    public Employee(String name, LocalDate hireDay){
+        this(name, 0, hireDay);
+    }
+    /**
+     * @param name the name of the employee*/
+    public Employee(String name){
+        this(name, LocalDate.now());
+    }
 
+    public Employee(){}
+    /**@return int employee id*/
+    public int getId(){
+        return this.id;
+    }
+    /**@return the name of the employee*/
     public String getName(){
         return this.name;
     }
-
+    /**@param salary the salary of the employee*/
+    public void setSalary(double salary){
+        this.salary = salary;
+    }
+    /**@return the salary of the employee*/
     public double getSalary(){
+        NumberFormat currency = NumberFormat.getCurrencyInstance();
         return this.salary;
     }
-
+    /**@return the date of hire*/
     public LocalDate getHireDay(){
         return this.hireDay;
     }
@@ -75,10 +133,9 @@ class Employee{
         this.salary += raise;
         return this.salary;
     }
-
-    public String[] info(){
-        Double castedSalary = (Double) this.salary;
-        return new String[]{name, castedSalary.toString(), hireDay.toString()};
+    /**@return an array containing employee info*/
+    public Object[] info(){
+        return new Object[]{id, name, salary, hireDay};
     }
 
     //unit test
