@@ -5,7 +5,7 @@ import java.time.*;
 /**
  * a simple java program to store staff information of a company.
  * the staff object stores the number and information of employees in the company.
- * the staff object has methods {@methods add} and {@methods getStaff}.
+ * the staff object has methods {@code  add()}, {@code get()} and {@code  getStaff()}.
  * the add method takes an employee object as argument and adds it to itself.
  * @author kamar baraka
  * @version 1.0
@@ -57,10 +57,11 @@ public class Staff {
 /**
  * a simple class to store employee information.
  * it takes the employee name, initial salary and date of employment and stores it.
- * it has methods {@methods getName}, {@methods getSalary}, {@methods getHireDate} that returns the name,
- * the salary and the date of hire respectively. It also has methods {@methods raiseSalary} that raises the
- * salary of the particular employee by a percentage,saves it and returns the resultant value. Method {@methods info} returns an array that contains
- * the information of the particular employee.
+ * it has methods {@code  getName()}, {@code  getSalary()}, {@code  getHireDate()} that returns the name,
+ * the salary and the date of hire respectively. It also has methods {@code  raiseSalary()} that raises the
+ * salary of the particular employee by a percentage,saves it and returns the resultant value. Method {@code  info()}
+ * returns an array that contains. the information of the particular employee and {@code toString()} that returns a
+ * string representation of the object
  * @author kamar baraka
  * @version 2.0
  * */
@@ -94,7 +95,7 @@ class Employee{
     }
     /**
      * @param name the name of the employee
-     * @param hireDay {@see LocalDate} object to represent the date of hire
+     * @param hireDay {@link  LocalDate} object to represent the date of hire
      * */
     public Employee(String name, LocalDate hireDay){
         this(name, 0, hireDay);
@@ -137,11 +138,24 @@ class Employee{
     public Object[] info(){
         return new Object[]{id, name, salary, hireDay};
     }
+    /**@return String representation of object*/
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Employee{");
+        sb.append("id=").append(id);
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", salary=").append(salary);
+        sb.append(", hireDay=").append(hireDay);
+        sb.append('}');
+        return sb.toString();
+    }
 
     //unit test
     public static void main(String[] args){
         var date = LocalDate.now();
         Employee employee = new Employee("kamar baraka", 20000, date);
-        System.out.println(Arrays.toString(employee.info()));
+        //System.out.println(Arrays.toString(employee.info()));
+
+        System.out.println(employee.toString());
     }
 }
