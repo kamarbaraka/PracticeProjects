@@ -4,7 +4,7 @@ import java.util.*;
 
 /**
  * a simple java program to store staff information of a company.
- * the staff object stores the number and information of employees in the company.
+ * the staff object stores the number and information of {@link Employee}s in the company.
  * the staff object has methods {@code  add()}, {@code get()} and {@code  getStaff()}.
  * the add method takes an employee object as argument and adds it to itself.
  * @author kamar baraka

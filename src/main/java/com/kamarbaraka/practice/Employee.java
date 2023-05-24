@@ -8,12 +8,12 @@ import java.util.Random;
 /**
  * a simple class to store employee information.
  * it takes the employee name, initial salary and date of employment and stores it.
- * it has methods {@code  getName()}, {@code  getSalary()}, {@code  getHireDate()} that returns the name,
- * the salary and the date of hire respectively. It also has methods {@code  raiseSalary()} that raises the
+ * it has methods: {@code getName()}, {@code getSalary()}, {@code getHireDate()} that returns the name,
+ * the salary and the date of hire respectively. It also has methods {@code raiseSalary()} that raises the
  * salary of the particular employee by a percentage,saves it and returns the resultant value. Method {@code  info()}
  * returns an array that contains. the information of the particular employee and {@code toString()} that returns a
  * string representation of the object
- *
+ * @see Staff
  * @author kamar baraka
  * @version 2.0
  */
@@ -68,14 +68,14 @@ public class Employee {
     }
 
     /**
-     * @return int employee id
+     * @return {@code int} employee id
      */
     public int getId() {
         return this.id;
     }
 
     /**
-     * @return the name of the employee
+     * @return {@code String} the name of the employee
      */
     public String getName() {
         return this.name;
@@ -89,7 +89,7 @@ public class Employee {
     }
 
     /**
-     * @return the salary of the employee
+     * @return {@code double} the salary of the employee
      */
     public double getSalary() {
         NumberFormat currency = NumberFormat.getCurrencyInstance();
@@ -97,7 +97,7 @@ public class Employee {
     }
 
     /**
-     * @return the date of hire
+     * @return {@code LocalDate} the date of hire
      */
     public LocalDate getHireDay() {
         return this.hireDay;
@@ -105,6 +105,7 @@ public class Employee {
 
     /**
      * @param percentage the percentage of the raise
+     * @return <em>double</em> the salary
      */
     public double raiseSalary(double percentage) {
         var raise = this.salary * (percentage / 100.0);
@@ -113,14 +114,14 @@ public class Employee {
     }
 
     /**
-     * @return an array containing employee info
+     * @return an <em>array</em> containing employee info
      */
     public Object[] info() {
         return new Object[]{id, name, salary, hireDay};
     }
 
     /**
-     * @return String representation of object
+     * @return <em>String</em> representation of object
      */
     @Override
     public String toString() {
